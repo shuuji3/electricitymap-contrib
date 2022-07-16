@@ -1,4 +1,18 @@
 {
+  "info-modal": {
+    "title": "情報",
+    "intro-text": "Electricity Mapsアプリは、ウェブとモバイル上でリアルタイムの知見を市民・エネルギー専門家・NGO・政策立案者に提供し、エネルギー転換という挑戦に対するより深い理解を促します。",
+    "open-source-text": "このアプリは<a href=\"%s\" target=\"_blank\">オープンソース</a> (<a href=\"%s\" target=\"_blank\">データソースを見る</a>) であり、コミュニティの力で支えられています。",
+    "feedback-button": "フィードバックを共有",
+    "github-button": "GitHubを表示",
+    "twitter-button": "Twitterで共有",
+    "slack-button": "Slackコミュニティに参加",
+    "privacy-policy": "プライバシーポリシー",
+    "legal-notice": "法的通知"
+  },
+  "settings-modal": {
+    "title": "設定"
+  },
   "panel-initial-text": {
     "thisproject": "このプロジェクトは",
     "opensource": "オープンソースです",
@@ -15,7 +29,7 @@
     },
     "view3": {
       "header": "あなたの電気がどこから来るかを知る",
-      "text": "地図上の矢印は電力の異なる場所からの流れを示します。電力源についてより詳しく知るにはそのエリアをクリックしてください。"
+      "text": "地図上の矢印は、異なる場所からの電力の流れを示します。電力源についてより詳しく知るにはそのエリアをクリックしてください。"
     },
     "view4": {
       "header": "風と太陽光のリアルタイムの状態",
@@ -36,6 +50,10 @@
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
     "dataIsDelayed": "この地域のデータは最大 %s 時間遅延します。ライブデータは表示できません。",
+    "estimated": "estimated",
+    "dataIsEstimated": "この地域の一部のデータは推定値です。推定手法については、<a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">こちら</a>を参照してください。",
+    "estimatedTooltip": "この地域のリアルタイムデータは、ソースとモデルの仮定に基づいた推定値です。",
+    "helpUs": "問題の特定を助けるためには、<a href=\"%s\" target=\"_blank\">ランタイムログ</a>を確認するか、データプロバイダーに連絡してください。",
     "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"%s\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
   },
@@ -45,14 +63,20 @@
     "search": "エリアを検索"
   },
   "country-history": {
-    "Getdata": "過去と予想のデータを取得する",
-    "carbonintensity": { "hourly": "最近の24時間の炭素強度" },
+    "carbonintensity": {
+      "default": "過去%1$sの炭素強度",
+      "hourly": "過去24時間の炭素強度",
+      "daily": "過去1ヶ月間の炭素強度",
+      "monthly": "過去1年間の炭素強度",
+      "yearly": "過去5年間の炭素強度"
+    },
+    "emissions": { "hourly": "過去24時間の排出" },
     "emissionsorigin": { "hourly": "過去24時間の排出源" },
     "emissionsproduction": { "hourly": "過去24時間に生成された排出ガス" },
-    "electricityorigin": { "hourly": "最近の24時間の電力源" },
-    "electricityproduction": { "hourly": "最近の24時間の発電" },
-    "electricityprices": { "hourly": "最近の24時間の電力価格" },
-    "emissions": { "hourly": "過去24時間の排出" }
+    "electricityorigin": { "hourly": "過去24時間の電力源" },
+    "electricityproduction": { "hourly": "過去24時間の発電" },
+    "electricityprices": { "hourly": "過去24時間の電力価格" },
+    "Getdata": "過去と予想のデータを取得する"
   },
   "footer": {
     "foundbugs": "バグの発見? ご報告ください",
@@ -74,7 +98,11 @@
     "carbonintensityexport": "輸出された炭素強度",
     "ofinstalled": "of installed capacity",
     "utilizing": "utilizing",
+    "representing": "representing",
+    "ofemissions": "of emissions",
     "withcarbonintensity": "with a carbon intensity of",
+    "zoomIn": "拡大",
+    "zoomOut": "縮小",
     "showWindLayer": "風のレイヤーを表示",
     "hideWindLayer": "風のレイヤーを非表示に",
     "showSolarLayer": "太陽のレイヤーを表示",
@@ -84,7 +112,7 @@
     "temporaryDataOutage": "ライブデータが一時的に利用できません",
     "production": "生産",
     "consumption": "消費",
-    "cpinfo": "<b>消費</b> は取り込みと放出を考慮し, <b>生産</b> はそれらを考慮しない",
+    "cpinfo": "<b>消費</b> は取り込みと放出を考慮し、<b>生産</b> はそれらを考慮しない",
     "selectLanguage": "言語を選択",
     "lowCarbDescription": "再生可能エネルギーと原子力を含む",
     "dataIsDelayed": "データが遅延しています"
@@ -98,10 +126,14 @@
     "database-ad": "過去のデータをお探しですか? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">データベースをチェックしてください!</a>",
     "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
     "legend": "Legend",
-    "faq": "よくある質問"
+    "faq": "よくある質問",
+    "privacyPolicy": "Privacy Policy",
+    "legalNotice": "Legal Notice"
   },
   "wind": "風力",
+  "windDataError": "風力のデータは現在利用できません",
   "solar": "太陽光",
+  "solarDataError": "太陽光のデータは現在利用できません",
   "hydro": "水力",
   "hydro storage": "水力ストレージ",
   "battery storage": "バッテリー貯蔵",
@@ -112,14 +144,14 @@
   "coal": "石炭",
   "oil": "石油",
   "unknown": "不明",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
+  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
+  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
+  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
+  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "地図",
@@ -151,7 +183,7 @@
     "carbonIntensity-answer": "炭素強度は発電に伴い排出される温室効果ガスの計測値です(gCO₂eq/kWh : 1時間に1キロワット電力消費する際に排出される、グラム単位の二酸化炭素排出量)。私たちは(発電ではなく)電力消費に伴う排出を測定しており、発電された地域で消費される電力の排出値も、他地域から輸入された電力による値も考慮した全ての排出ガス(CO₂もメタンのような他の温室効果ガスも)を意味します。私たちは発電所のライフサイクル全体(建設、燃料製造、運用による排出、運用終了後の解体)から生じる排出値を考慮したライフサイクル分析(LCA: life cycle analysis)によるアプローチをとります。",
     "consumptionFocus-question": "なぜ発電ではなく電力消費による炭素強度を計測するのですか?",
     "consumptionFocus-answer": "私たちは市民は自らが消費する電気に責任を負うべきで、住んでいる地域で発電されている電気に責任を負うべきでは無いと信じています。さらには各地域が、クリーンではない発電を他の地域に移すことや他の地域から電気を輸入することでは気候への影響が少ないと'偽る'ことはできないはずだと私たちは信じています。",
-    "renewableLowCarbonDifference-question": "“再生可能”と“低炭素”の違いは何ですか??",
+    "renewableLowCarbonDifference-question": "“再生可能”と“低炭素”の違いは何ですか?",
     "renewableLowCarbonDifference-answer": "再生可能な発電は風力、水力、太陽光、地熱などの再生可能なエネルギー源による発電です。低炭素な発電は原子力発電などの非常に少ない温室効果ガスの排出を伴う発電を意味します。",
     "importsAndExports-question": "電力の輸入と輸出も考慮していますか?",
     "importsAndExports-answer": "はい、考慮しています。輸入と輸出は<a href=\"#mapArrows\" class=\"entry-link\">地域間の小さい矢印</a>として見ることができます。詳細な情報は地域をクリックした際に表示される図表の中で見ることができます。",
