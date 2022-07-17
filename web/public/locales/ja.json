@@ -56,12 +56,15 @@
     "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
     "noLiveData": "このエリアのライブデータは一時的に利用できません",
     "dataIsDelayed": "この地域のデータは最大 %s 時間遅延します。ライブデータは表示できません。",
-    "estimated": "estimated",
+    "estimated": "推定値",
     "dataIsEstimated": "この地域の一部のデータは推定値です。推定手法については、<a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">こちら</a>を参照してください。",
     "estimatedTooltip": "この地域のリアルタイムデータは、ソースとモデルの仮定に基づいた推定値です。",
     "helpUs": "問題の特定を助けるためには、<a href=\"%s\" target=\"_blank\">ランタイムログ</a>を確認するか、データプロバイダーに連絡してください。",
     "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"%s\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
     "now": "今"
+  },
+  "time-controller": {
+    "title": "過去からのデータを表示"
   },
   "left-panel": {
     "zone-list-header-title": "エリアごとの環境への影響",
@@ -77,22 +80,22 @@
       "yearly": "過去5年間の炭素強度"
     },
     "emissions": {
-      "hourly": "過去24時間の排出"
+      "default": "過去24時間の排出"
     },
     "emissionsorigin": {
-      "hourly": "過去24時間の排出源"
+      "default": "過去24時間の排出源"
     },
     "emissionsproduction": {
-      "hourly": "過去24時間に生成された排出ガス"
+      "default": "過去24時間に生成された排出ガス"
     },
     "electricityorigin": {
-      "hourly": "過去24時間の電力源"
+      "default": "過去24時間の電力源"
     },
     "electricityproduction": {
-      "hourly": "過去24時間の発電"
+      "default": "過去24時間の発電"
     },
     "electricityprices": {
-      "hourly": "過去24時間の電力価格"
+      "default": "過去24時間の電力価格"
     },
     "Getdata": "過去と予想のデータを取得する"
   },
@@ -114,11 +117,6 @@
     "renewable": "再生可能",
     "crossborderexport": "国境を超える輸出",
     "carbonintensityexport": "輸出された炭素強度",
-    "ofinstalled": "of installed capacity",
-    "utilizing": "utilizing",
-    "representing": "representing",
-    "ofemissions": "of emissions",
-    "withcarbonintensity": "with a carbon intensity of",
     "zoomIn": "拡大",
     "zoomOut": "縮小",
     "showWindLayer": "風のレイヤーを表示",
@@ -143,10 +141,10 @@
     "retrynow": "今すぐリトライ",
     "database-ad": "過去のデータをお探しですか? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">データベースをチェックしてください!</a>",
     "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
-    "legend": "Legend",
+    "legend": "凡例",
     "faq": "よくある質問",
-    "privacyPolicy": "Privacy Policy",
-    "legalNotice": "Legal Notice"
+    "privacyPolicy": "プライバシーポリシー",
+    "legalNotice": "法的通知"
   },
   "wind": "風力",
   "windDataError": "風力のデータは現在利用できません",
@@ -162,15 +160,6 @@
   "coal": "石炭",
   "oil": "石油",
   "unknown": "不明",
-  "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-  "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-  "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-  "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-  "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-  "ofCO2eqPerMinute": "of CO₂eq per minute",
   "theMap": {
     "groupName": "地図",
     "mapColors-question": "地図中の色は何を意味しますか?",
@@ -235,8 +224,7 @@
     "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>へアクセスしてください。",
     "workTogether-question": "私たちと一緒に仕事できますか?",
     "workTogether-answer": "私たちはコラボレーションできる機会を積極的に探しています。<a href=\"mailto:app@electricitymap.org\">email</a>を送ってください!",
-    "disclaimer-question": "免責事項",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-question": "免責事項"
   },
   "zoneShortName": {
     "AD": {
@@ -266,14 +254,14 @@
     "AQ": {
       "zoneName": "南極大陸"
     },
+    "AR": {
+      "zoneName": "アルゼンチン"
+    },
     "AS": {
       "zoneName": "アメリカ領サモア"
     },
     "AT": {
       "zoneName": "オーストリア"
-    },
-    "AR": {
-      "zoneName": "アルゼンチン"
     },
     "AUS-NSW": {
       "countryName": "オーストラリア",
@@ -295,9 +283,15 @@
       "countryName": "オーストラリア",
       "zoneName": "タスマニア"
     },
+    "AUS-TAS-CBI": {
+      "countryName": "オーストラリア"
+    },
     "AUS-TAS-KI": {
       "countryName": "オーストラリア",
       "zoneName": "キング島"
+    },
+    "AUS-TAS-FI": {
+      "countryName": "オーストラリア"
     },
     "AUS-VIC": {
       "countryName": "オーストラリア",
@@ -306,6 +300,9 @@
     "AUS-WA": {
       "countryName": "オーストラリア",
       "zoneName": "西 オーストラリア"
+    },
+    "AUS-WA-RI": {
+      "countryName": "オーストラリア"
     },
     "AW": {
       "zoneName": "アルバ"
@@ -359,6 +356,9 @@
       "countryName": "ブラジル",
       "zoneName": "中央ブラジル"
     },
+    "BR-I": {
+      "countryName": "ブラジル"
+    },
     "BR-N": {
       "countryName": "ブラジル",
       "zoneName": "北ブラジル"
@@ -401,21 +401,27 @@
       "countryName": "カナダ",
       "zoneName": "マニトバ州"
     },
-    "CA-NL": {
-      "countryName": "カナダ",
-      "zoneName": "ニューファンドランドアンドラブラドール州"
-    },
     "CA-NB": {
       "countryName": "カナダ",
       "zoneName": "ニューブランズウィック"
     },
-    "CA-NT": {
+    "CA-NL": {
       "countryName": "カナダ",
-      "zoneName": "ノースウェスト準州"
+      "zoneName": "ニューファンドランドアンドラブラドール州"
+    },
+    "CA-NL-LB": {
+      "countryName": "カナダ"
+    },
+    "CA-NL-NF": {
+      "countryName": "カナダ"
     },
     "CA-NS": {
       "countryName": "カナダ",
       "zoneName": "ノバスコシア州"
+    },
+    "CA-NT": {
+      "countryName": "カナダ",
+      "zoneName": "ノースウェスト準州"
     },
     "CA-NU": {
       "countryName": "カナダ",
@@ -461,6 +467,9 @@
     },
     "CK": {
       "zoneName": "クック諸島"
+    },
+    "CL-CHP": {
+      "countryName": "チリ"
     },
     "CL-SEA": {
       "countryName": "チリ",
@@ -578,7 +587,7 @@
     },
     "ES-CN-HI": {
       "countryName": "スペイン",
-      "zoneName": "エル・イエロ島 "
+      "zoneName": "エル・イエロ島"
     },
     "ES-CN-IG": {
       "countryName": "スペイン",
@@ -831,9 +840,8 @@
       "countryName": "インド",
       "zoneName": "シッキム"
     },
-    "IN-TL": {
-      "countryName": "インド",
-      "zoneName": "タミルナードゥ州"
+    "IN-TN": {
+      "countryName": "インド"
     },
     "IN-TR": {
       "countryName": "インド",
@@ -1180,6 +1188,10 @@
       "countryName": "ニュージーランド",
       "zoneName": "チャタム諸島"
     },
+    "NZ-NZST": {
+      "countryName": "ニュージーランド",
+      "zoneName": "Stewart Island"
+    },
     "OM": {
       "zoneName": "オマーン"
     },
@@ -1256,11 +1268,17 @@
       "countryName": "ロシア",
       "zoneName": "シベリア"
     },
-    "RU-EU": {
+    "RU-AS": {
+      "countryName": "ロシア",
       "zoneName": "ロシア"
     },
-    "RU-AS": {
-      "zoneName": "ロシア"
+    "RU-EU": {
+      "countryName": "ロシア",
+      "zoneName": "Arctic"
+    },
+    "RU-FE": {
+      "countryName": "ロシア",
+      "zoneName": "Far East"
     },
     "RU-KGD": {
       "countryName": "ロシア",
@@ -1536,7 +1554,7 @@
     },
     "US-MIDW-MISO": {
       "countryName": "アメリカ合衆国",
-      "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
+      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
     },
     "US-NE-ISNE": {
       "countryName": "アメリカ合衆国",
