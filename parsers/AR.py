@@ -187,6 +187,11 @@ def fetch_exchange(
         feature_id = feature["properties"]["id"]
         name = id_name_map[feature_id]
         value = int(feature["properties"]["text"])
+        arrow_direction = int(
+            feature["properties"]["url"]
+        )  # i.e. 'flecha45' (arrow image at 45 degree)
+
+        # TODO: maybe this is wrong. the value might be always positive and arrow_direction might be changed...
         if name != "CL":
             # Chili's value is export (i.e. AR->CH) but others are import (i.e. BR->AR)
             value *= -1
