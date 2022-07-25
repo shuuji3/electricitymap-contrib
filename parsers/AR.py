@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
 
 import datetime
+import json
 import logging
 from typing import Dict, List
 
 import arrow
 import requests
-from bs4 import BeautifulSoup
 
-try:
-    unicode  # Python 2
-except NameError:
-    unicode = str  # Python 3
+from lib import web
 
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
@@ -24,6 +21,11 @@ CAMMESA_DEMANDA_ENDPOINT = (
     "https://api.cammesa.com/demanda-svc/generacion/ObtieneGeneracioEnergiaPorRegion/"
 )
 CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/RenovablesService/GetChartTotalTRDataSource/"
+CAMMESA_EXCHANGE_ENDPOINT = (
+    "https://api.cammesa.com/demanda-svc/demanda/IntercambioCorredoresGeo"
+)
+
+TZ = "America/Argentina/Buenos_Aires"
 
 
 def fetch_production(
@@ -144,8 +146,62 @@ def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    raise NotImplementedError("This exchange is not currently implemented")
+    data = json.loads(web.get_response_text("AR", CAMMESA_EXCHANGE_ENDPOINT))
+
+    id_name_map = _make_id_name_map()
+
+    exchange_data = {}
+    for feature in data["features"]:
+        if not feature["properties"]["internacional"]:
+            continue
+
+        feature_id = feature["properties"]["id"]
+        name = id_name_map[feature_id]
+        value = int(feature["properties"]["text"])
+        if name != "CL":
+            # Chili's value is export (i.e. AR->CH) but others are import (i.e. BR->AR)
+            value *= -1
+        key = f"AR->{name}"
+        exchange_data[key] = value
+
+    if sorted_zone_keys not in exchange_data:
+        return
+
+    data = {
+        "sortedZoneKeys": sorted_zone_keys,
+        "datetime": arrow.now(TZ),
+        "netFlow": exchange_data.get(sorted_zone_keys),
+        "source": "cammesaweb.cammesa.com",
+    }
+
+    return data
+
+
+def _make_id_name_map() -> dict:
+    """Create a mapping from id to name for exchange data.
+
+    example return value: {'1002055': 'BR', '1002056': 'CL-SEN', '1002598': 'UY', '1002595': 'PY'}
+    """
+    name_map = {
+        "BRA": "BR",  # Brazil
+        # TODO: confirm if correct?
+        "CHI": "CL-SEN",  # Chili
+        "URU": "UY",  # Uruguay
+        "PAR": "PY",  # Paraguay
+    }
+
+    url = "https://microfe.cammesa.com/demandaregionchart/assets/data/regionesExternasPuntos.geojson.json"
+    data = json.loads(web.get_response_text("AR", url))
+
+    mapping = {}
+    for feature in data["features"]:
+        feature_id = feature["properties"]["id"]
+        feature_name = feature["properties"]["name"]
+        mapping[feature_id] = name_map[feature_name]
+
+    return mapping
 
 
 def fetch_price(
@@ -168,6 +224,8 @@ if __name__ == "__main__":
     print(fetch_price())
     print("fetch_exchange(AR, PY) ->")
     print(fetch_exchange("AR", "PY"))
+    print("fetch_exchange(AR, BR) ->")
+    print(fetch_exchange("AR", "BR"))
     print("fetch_exchange(AR, UY) ->")
     print(fetch_exchange("AR", "UY"))
     print("fetch_exchange(AR, CL-SEN) ->")
