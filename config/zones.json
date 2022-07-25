@@ -94,7 +94,8 @@
     },
     "contributors": ["systemcatch", "corradio", "nessie2013"],
     "parsers": {
-      "production": "AR.fetch_production"
+      "production": "AR.fetch_production",
+      "consumptionForecast": "AR.fetch_consumption_forecast"
     },
     "timezone": "America/Argentina/Buenos_Aires"
   },

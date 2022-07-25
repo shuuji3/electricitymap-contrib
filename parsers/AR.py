@@ -6,6 +6,7 @@ import logging
 from typing import Dict, List
 
 import arrow
+import pandas as pd
 import requests
 
 from lib import web
@@ -24,6 +25,7 @@ CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/Renovab
 CAMMESA_EXCHANGE_ENDPOINT = (
     "https://api.cammesa.com/demanda-svc/demanda/IntercambioCorredoresGeo"
 )
+CAMMESA_DEMAND_ENDPOINT = "https://api.cammesa.com/demanda-svc/demanda/ObtieneDemandaYTemperaturaRegion?id_region=1002"
 
 TZ = "America/Argentina/Buenos_Aires"
 
@@ -142,6 +144,31 @@ def non_renewables_production_mix(zone_key: str, session) -> Dict[str, dict]:
     return non_renewables_production
 
 
+def fetch_consumption_forecast(
+    zone_key="AR",
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__),
+) -> list:
+    """Gets consumption forecast for specified zone."""
+
+    df = pd.read_json(CAMMESA_DEMAND_ENDPOINT)
+    df.index = df["fecha"]
+    df = df[["demPrevista"]].dropna()
+
+    data = []
+    for datetime_str, demand_forcast in df.iterrows():
+        data.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": arrow.get(datetime_str),
+                "value": int(demand_forcast),
+                "source": "https://cammesaweb.cammesa.com/",
+            }
+        )
+    return data
+
+
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ) -> dict:
@@ -220,8 +247,13 @@ if __name__ == "__main__":
 
     print("fetch_production() ->")
     print(fetch_production())
+
     print("fetch_price() ->")
     print(fetch_price())
+
+    print("fetch_consumption_forecast() ->")
+    print(fetch_consumption_forecast())
+
     print("fetch_exchange(AR, PY) ->")
     print(fetch_exchange("AR", "PY"))
     print("fetch_exchange(AR, BR) ->")
